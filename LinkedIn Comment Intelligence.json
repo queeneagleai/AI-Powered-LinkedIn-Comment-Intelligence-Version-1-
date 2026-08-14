@@ -1,0 +1,614 @@
+{
+  "name": "LinkedIn Comment Intelligence",
+  "nodes": [
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        -80,
+        368
+      ],
+      "id": "70dfa8ce-7e84-40fd-9c79-d3f3e9477141",
+      "name": "When clicking ‘Execute workflow’"
+    },
+    {
+      "parameters": {
+        "operation": "append",
+        "documentId": {
+          "__rl": true,
+          "value": "1RlAp3QyAzZydTI1caf51O4El-9NwbKQq6RUlkXNP_ZE",
+          "mode": "list",
+          "cachedResultName": "Linkedin Comments",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1RlAp3QyAzZydTI1caf51O4El-9NwbKQq6RUlkXNP_ZE/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "Comments",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1RlAp3QyAzZydTI1caf51O4El-9NwbKQq6RUlkXNP_ZE/edit#gid=0"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "comment_date": "={{ $now}}",
+            "replied": "No",
+            "label": "={{ $json.output.label }}",
+            "priority": "={{ $json.output.priority }}",
+            "reason": "={{ $json.output.reason }}",
+            "Processed_at": "={{ $('Get dataset items').item.json.scrapedAt }}",
+            "comment_id": "={{ $('Get dataset items').item.json.commentId }}",
+            "author": "={{ $('Get dataset items').item.json.commenterName }}",
+            "post_url": "={{ $('Get dataset items').item.json.postUrl }}",
+            "post_title": "={{ $('Get dataset items').item.json.postId }}",
+            "comment": "={{ $('Get dataset items').item.json.commentText }}"
+          },
+          "matchingColumns": [],
+          "schema": [
+            {
+              "id": "comment_id",
+              "displayName": "comment_id",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "author",
+              "displayName": "author",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "comment",
+              "displayName": "comment",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "post_title",
+              "displayName": "post_title",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "post_url",
+              "displayName": "post_url",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "comment_date",
+              "displayName": "comment_date",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "label",
+              "displayName": "label",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "priority",
+              "displayName": "priority",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "reason",
+              "displayName": "reason",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "replied",
+              "displayName": "replied",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Processed_at",
+              "displayName": "Processed_at",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        592,
+        -224
+      ],
+      "id": "4e715c08-2124-4b02-bab2-4a012fee43bf",
+      "name": "Append row in sheet",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "BBRztb0uly5NN9af",
+          "name": "Google Sheets account 2"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "f34c8ddd-77c8-4d8c-88bf-4155cb6d1323",
+              "name": "comment_id",
+              "value": "001",
+              "type": "string"
+            },
+            {
+              "id": "a98b2c33-50b9-44a0-8879-b48cf8a1c5bd",
+              "name": "author",
+              "value": "Sarah Johnson",
+              "type": "string"
+            },
+            {
+              "id": "bf0d5541-116a-49e3-8c0f-1c10e8e0bd09",
+              "name": "comment",
+              "value": "Can you explain how this workflow works?",
+              "type": "string"
+            },
+            {
+              "id": "a18081de-6fd4-492e-a191-655024261f7a",
+              "name": "post_title",
+              "value": "AI Automation for Linkedin Creators",
+              "type": "string"
+            },
+            {
+              "id": "83218e88-fe18-4190-91a0-6235e8602762",
+              "name": "post_url",
+              "value": "https://linkedin.com/posts/example",
+              "type": "string"
+            },
+            {
+              "id": "5f30a400-c2de-4a79-91cc-c63c2526fa0c",
+              "name": "comment_date",
+              "value": "={{ $now}}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        96,
+        368
+      ],
+      "id": "616fe14e-9746-4bb3-9c5c-f674b085e43c",
+      "name": "Sample Linkedin Comments"
+    },
+    {
+      "parameters": {
+        "jsonSchemaExample": "{\n  \"label\": \"Question\",\n  \"priority\": \"High\",\n  \"reason\": \"The commenter is asking for more information.\"\n}"
+      },
+      "type": "@n8n/n8n-nodes-langchain.outputParserStructured",
+      "typeVersion": 1.3,
+      "position": [
+        272,
+        -16
+      ],
+      "id": "72e587b1-64c4-43a1-b221-06857f6557f0",
+      "name": "Structured Output Parser"
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "=Analyze this LinkedIn comment.\n\nCommenter:\n{{ $json.commenterName }}\n\nComment:\n{{ $json.commentText }}\n\nPost:\n{{ $json.postText }}\n\nClassify the comment into EXACTLY ONE category:\n\n- Question\n- Praise\n- Potential Lead\n- Hater\n- Collaboration Opportunity\n\nPriority rules:\n\nQuestion → High\n\nPotential Lead → High\n\nCollaboration Opportunity → High\n\nPraise → Low\n\nHater → Low\n\nReturn ONLY valid JSON in this format:\n\n{\n  \"label\":\"\",\n  \"priority\":\"\",\n  \"reason\":\"\"\n}",
+        "hasOutputParser": true,
+        "messages": {
+          "messageValues": [
+            {
+              "message": "You are an expert LinkedIn Community Manager.\n\nYour job is to analyze LinkedIn comments and determine which ones deserve immediate attention.\n\nRules:\n\nChoose exactly ONE label:\n\nQuestion\nPraise\nPotential Lead\nHater\nCollaboration Opportunity\n\nPriority rules:\n\nQuestion → High\n\nPotential Lead → High\n\nCollaboration Opportunity → High\n\nPraise → Low\n\nHater → Low\n\nReturn only valid JSON.\n\nUse this format:\n\n{\n  \"label\": \"\",\n  \"priority\": \"\",\n  \"reason\": \"\"\n}\n\nNever include markdown.\n\nNever explain anything outside the JSON."
+            }
+          ]
+        },
+        "batching": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.chainLlm",
+      "typeVersion": 1.9,
+      "position": [
+        128,
+        -208
+      ],
+      "id": "c12dc63b-085d-4b0e-8b66-ff7a16682b38",
+      "name": "Basic LLM Chain"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 3
+          },
+          "conditions": [
+            {
+              "id": "04b77431-afdf-43c6-a749-27842bad0f9e",
+              "leftValue": "={{ $json.priority }}",
+              "rightValue": "High",
+              "operator": {
+                "type": "string",
+                "operation": "equals"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.3,
+      "position": [
+        736,
+        -224
+      ],
+      "id": "01e0f49a-9108-4a0b-9885-8bf2aeeb9a59",
+      "name": "If"
+    },
+    {
+      "parameters": {
+        "chatId": "6257440017",
+        "text": "=🚨 High Priority LinkedIn Comment\n\nAuthor: {{ $json.author }}\n\nLabel: {{ $json.label }}\n\nPriority: {{ $json.priority }}\n\nReason: {{ $json.reason }}\n\nComment: {{ $json.comment }}",
+        "additionalFields": {
+          "appendAttribution": false
+        }
+      },
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.2,
+      "position": [
+        896,
+        -320
+      ],
+      "id": "c5a8fd3f-dca6-490d-a263-9503dbbcc7ae",
+      "name": "Send a text message",
+      "webhookId": "9ed40a15-024b-4776-a665-61eeed3ce960",
+      "credentials": {
+        "telegramApi": {
+          "id": "e1W9mvxSdzSdO91l",
+          "name": "Telegram account 2"
+        }
+      }
+    },
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.noOp",
+      "typeVersion": 1,
+      "position": [
+        912,
+        -160
+      ],
+      "id": "7e0f23e5-da5f-4987-a63c-46cb74fb1d3d",
+      "name": "No Operation, do nothing"
+    },
+    {
+      "parameters": {
+        "rule": {
+          "interval": [
+            {
+              "field": "minutes",
+              "minutesInterval": 30
+            }
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.3,
+      "position": [
+        -480,
+        -80
+      ],
+      "id": "397f7e70-55fb-4423-b552-fc5e0e05fa5c",
+      "name": "Schedule Trigger"
+    },
+    {
+      "parameters": {
+        "actorSource": "store",
+        "actorId": {
+          "__rl": true,
+          "value": "0tcbv4SIYhcPCFteQ",
+          "mode": "list",
+          "cachedResultName": "LinkedIn Post Comments & Engagements Scraper (khadinakbar/linkedin-post-comments-engagements-scraper)",
+          "cachedResultUrl": "https://console.apify.com/actors/0tcbv4SIYhcPCFteQ/input"
+        },
+        "customBody": "{\n    \"dedupeComments\": true,\n    \"includeRawData\": false,\n    \"maxCommentsPerPost\": 20,\n    \"maxPosts\": 1,\n    \"postUrls\": [\n        \"https://www.linkedin.com/posts/queen-ikwuji-8b925524a_queeneagleai-buildinpublic-aiautomation-activity-7477270120470478849-nJRx?utm_source=share&utm_medium=member_desktop&rcm=ACoAAD2d880BpY2wXBjI1wf0BS-3Pa74CIbM3Jc\",\n        \"https://www.linkedin.com/posts/queen-ikwuji-8b925524a_aiautomation-n8n-linkedinautomation-activity-7482338318945304576-DyM3?utm_source=share&utm_medium=member_desktop&rcm=ACoAAD2d880BpY2wXBjI1wf0BS-3Pa74CIbM3Jc\"\n    ]\n}"
+      },
+      "type": "@apify/n8n-nodes-apify.apify",
+      "typeVersion": 1,
+      "position": [
+        -336,
+        -80
+      ],
+      "id": "17b14c95-965e-4257-8f90-074435a58c97",
+      "name": "Run an Actor and get dataset",
+      "credentials": {
+        "apifyApi": {
+          "id": "7jyQ6WZbt2aasrcH",
+          "name": "Apify account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 3
+          },
+          "conditions": [
+            {
+              "id": "c744c364-db35-45c8-a98d-9f3fc4d4aa66",
+              "leftValue": "={{ $json.recordType }}",
+              "rightValue": "comment",
+              "operator": {
+                "type": "string",
+                "operation": "equals",
+                "name": "filter.operator.equals"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.3,
+      "position": [
+        -48,
+        -80
+      ],
+      "id": "94274123-41be-4fdb-88e6-081e8ca9b596",
+      "name": "Filter Comments"
+    },
+    {
+      "parameters": {
+        "resource": "Datasets",
+        "datasetId": "={{ $json.defaultDatasetId }}",
+        "options": {}
+      },
+      "type": "@apify/n8n-nodes-apify.apify",
+      "typeVersion": 1,
+      "position": [
+        -192,
+        -80
+      ],
+      "id": "f2275232-9882-4007-9ccc-a8e547c4e615",
+      "name": "Get dataset items",
+      "credentials": {
+        "apifyApi": {
+          "id": "7jyQ6WZbt2aasrcH",
+          "name": "Apify account"
+        }
+      }
+    },
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.merge",
+      "typeVersion": 3.2,
+      "position": [
+        432,
+        -144
+      ],
+      "id": "ec8f9ab6-e564-44cf-be49-06c04d420efe",
+      "name": "Merge"
+    },
+    {
+      "parameters": {
+        "model": "openai/gpt-4o-mini",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenRouter",
+      "typeVersion": 1,
+      "position": [
+        64,
+        48
+      ],
+      "id": "2850b967-7e67-4a7f-a808-996f9164226f",
+      "name": "OpenRouter Chat Model",
+      "credentials": {
+        "openRouterApi": {
+          "id": "zuKPSC3hP4nLJmqP",
+          "name": "OpenRouter account 3"
+        }
+      }
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "When clicking ‘Execute workflow’": {
+      "main": [
+        [
+          {
+            "node": "Sample Linkedin Comments",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Sample Linkedin Comments": {
+      "main": [
+        []
+      ]
+    },
+    "Structured Output Parser": {
+      "ai_outputParser": [
+        [
+          {
+            "node": "Basic LLM Chain",
+            "type": "ai_outputParser",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Basic LLM Chain": {
+      "main": [
+        [
+          {
+            "node": "Merge",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Append row in sheet": {
+      "main": [
+        [
+          {
+            "node": "If",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If": {
+      "main": [
+        [
+          {
+            "node": "Send a text message",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "No Operation, do nothing",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Schedule Trigger": {
+      "main": [
+        [
+          {
+            "node": "Run an Actor and get dataset",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Run an Actor and get dataset": {
+      "main": [
+        [
+          {
+            "node": "Get dataset items",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get dataset items": {
+      "main": [
+        [
+          {
+            "node": "Filter Comments",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Filter Comments": {
+      "main": [
+        [
+          {
+            "node": "Basic LLM Chain",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Merge",
+            "type": "main",
+            "index": 1
+          }
+        ]
+      ]
+    },
+    "Merge": {
+      "main": [
+        [
+          {
+            "node": "Append row in sheet",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "OpenRouter Chat Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Basic LLM Chain",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1",
+    "binaryMode": "separate"
+  },
+  "versionId": "d8144523-3160-4131-8e49-ac3c7a6c27a5",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "b4c383bd9c8e3e5b646ea18b9fb1d2d3df0156d6c1b19b4ebff8e945e07d2a00"
+  },
+  "id": "6BIod8rkjckVfQ2d",
+  "tags": []
+}
